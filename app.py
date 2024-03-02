@@ -76,379 +76,10 @@ with tab2:
     df_list = ["M","A","D","A","U","Board","C....","GP."]
 
     df_type = st.radio("Select the Type", df_list, horizontal=True)
-    Upload_btn = st.button("upload")
+    Upload_btn = st.button("New Upload")
     Newuser_btn = st.button("New User")
 
-    task = st.text_area("What is your task?",value="""
-you are a security engineer that is able to prioritise the most important findings that need to be fixed. Some aspects you may want to consider
-    - If a finding is in a test file or something that looks like a test it should not be as high of a priority
-    - How exploitable is the finding. Most static analysis tools will not tell you how exploitable a finding is because they do not have enough context of the repo. Can you fix this and incorporate exploitability in your analysis. Ensure you can reproduce reliable and consistent results.
-    - How much engineering effort will it take to fix the finding. Some fixes are simple one line fixes that only take a couple of minutes. Other vulnerabilities require you to restructure your program that could be expensive. Calculate how long it will take to fix findings. You should also provide a justification which can be relayed to the end user.
-- Once findings have been prioritised your next task is to incorporate the most important findings into the current sprint.
-    - Analyse the engineering time taken to fix the finding and see if it fits into the sprint
-    - Ensure that findings are allocated to the correct team and members
-
-Remember you should build an agent for the following tasks. It should first prioritise findings then understand the sprint play to ensure associated tickets. Document your approach to solving the problem.
-{
-	"Golang errors": {},
-	"Issues": [
-		{
-			"severity": "MEDIUM",
-			"confidence": "MEDIUM",
-			"cwe": {
-				"id": "88",
-				"url": "https://cwe.mitre.org/data/definitions/88.html"
-			},
-			"rule_id": "G107",
-			"details": "Potential HTTP request made with variable url",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/main.go",
-			"code": "11: 	url := fmt.Sprintf("http://%s/", host)
-12: 	res, err := http.Get(url)
-13: 	if err != nil {
-",
-			"line": "12",
-			"column": "14",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "MEDIUM",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "703",
-				"url": "https://cwe.mitre.org/data/definitions/703.html"
-			},
-			"rule_id": "G307",
-			"details": "Deferring unsafe method "Close" on type "*os.File"",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/test/main.go",
-			"code": "13: 
-14: 	defer file.Close()
-15: 
-",
-			"line": "14",
-			"column": "2",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/struct-cast/main.go",
-			"code": "26: 
-27: 	violet := *(*VioletStruct)(unsafe.Pointer(&pink))
-28: 
-",
-			"line": "27",
-			"column": "29",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/race-slice/main.go",
-			"code": "28: 
-29: 	return *(*[]byte)(unsafe.Pointer(sliceHeader))
-30: }
-",
-			"line": "29",
-			"column": "20",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/race-slice/main.go",
-			"code": "18: func unsafeStringToBytes(s *string) []byte {
-19: 	sh := (*reflect.StringHeader)(unsafe.Pointer(s))
-20: 	sliceHeader := &reflect.SliceHeader{
-",
-			"line": "19",
-			"column": "32",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/information-leak/main.go",
-			"code": "13: 	// read from memory behind buffer
-14: 	var leakingInformation = (*[8+17]byte)(unsafe.Pointer(&harmlessData[0]))
-15: 
-",
-			"line": "14",
-			"column": "41",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/opcode.go",
-			"code": "24: 
-25: 	forgets := *(*[]_ForgetOne)(unsafe.Pointer(h))
-26: 	for i, f := range forgets {
-",
-			"line": "25",
-			"column": "30",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/opcode.go",
-			"code": "19: 	h := &reflect.SliceHeader{
-20: 		Data: uintptr(unsafe.Pointer(&req.arg[0])),
-21: 		Len:  int(in.Count),
-",
-			"line": "20",
-			"column": "17",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/opcode.go",
-			"code": "11: 	in := (*_BatchForgetIn)(req.inData)
-12: 	wantBytes := uintptr(in.Count) * unsafe.Sizeof(_ForgetOne{})
-13: 	if uintptr(len(req.arg)) < wantBytes {
-",
-			"line": "12",
-			"column": "35",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/exploit.go",
-			"code": "28: 		inHeader:            nil,
-29: 		inData:              unsafe.Pointer(&_BatchForgetIn{Count: 5,}),
-30: 		arg:                 forgetObjectBytes,
-",
-			"line": "29",
-			"column": "24",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/exploit.go",
-			"code": "18: 	sH.Len *= 16
-19: 	forgetObjectBytes := *(*[]byte)(unsafe.Pointer(sH))
-20: 
-",
-			"line": "19",
-			"column": "34",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/exploit.go",
-			"code": "15: 
-16: 	sH := (*reflect.SliceHeader)(unsafe.Pointer(&forgetObjects))
-17: 	sH.Cap *= 16
-",
-			"line": "16",
-			"column": "31",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/escape-analysis/main.go",
-			"code": "19: 	}
-20: 	return *(*string)(unsafe.Pointer(&strHeader))
-21: }
-",
-			"line": "20",
-			"column": "20",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/escape-analysis/main.go",
-			"code": "14: func BytesToString(b []byte) string {
-15: 	bytesHeader := (*reflect.SliceHeader)(unsafe.Pointer(&b))
-16: 	strHeader := reflect.StringHeader{
-",
-			"line": "15",
-			"column": "40",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/code-injection/main.go",
-			"code": "21: 	sliceHeader := (*reflect.SliceHeader)(unsafe.Pointer(&confusedSlice))
-22: 	harmlessDataAddress := uintptr(unsafe.Pointer(&(harmlessData[0])))
-23: 	sliceHeader.Data = harmlessDataAddress
-",
-			"line": "22",
-			"column": "33",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/code-injection/main.go",
-			"code": "20: 	confusedSlice := make([]byte, 512)
-21: 	sliceHeader := (*reflect.SliceHeader)(unsafe.Pointer(&confusedSlice))
-22: 	harmlessDataAddress := uintptr(unsafe.Pointer(&(harmlessData[0])))
-",
-			"line": "21",
-			"column": "40",
-			"nosec": false,
-			"suppressions": null
-		},
-		{
-			"severity": "LOW",
-			"confidence": "HIGH",
-			"cwe": {
-				"id": "242",
-				"url": "https://cwe.mitre.org/data/definitions/242.html"
-			},
-			"rule_id": "G103",
-			"details": "Use of unsafe calls should be audited",
-			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/code-flow-redirection/main.go",
-			"code": "53: 
-54: 	arrayCopy((*[64]byte)(unsafe.Pointer(&theData.harmlessData)), &theData.exploit)
-55: }
-",
-			"line": "54",
-			"column": "24",
-			"nosec": false,
-			"suppressions": null
-		}
-	],
-	"Stats": {
-		"files": 11,
-		"lines": 493,
-		"nosec": 0,
-		"found": 17
-	},
-	"GosecVersion": "dev"
-}
-Example Code Sprint
-To-do
-In progress
-Complete
-package main
-
-import (
-	"fmt"
-	"net/http"
-	"os"
-)
-
-func main() {
-	host := os.Args[0]
-	url := fmt.Sprintf("http://%s/", host)
-	res, err := http.Get(url)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("Status: %d", res.StatusCode)
-}
-
-
-come up with sprint planing of your findings in this code and create tickets and assign them based on sprint and availability of team and write code fixes on ticket and write final tickets in sprints with heading and code samples and priority and assignees
-""")
+    task = st.text_area("")
 
 
 
@@ -535,3 +166,377 @@ come up with sprint planing of your findings in this code and create tickets and
             if chunk_content is not None:
                 result = result + chunk_content
                 step4.info("# Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
+
+
+# ##################
+# What is your task?",value="""
+# you are a security engineer that is able to prioritise the most important findings that need to be fixed. Some aspects you may want to consider
+#     - If a finding is in a test file or something that looks like a test it should not be as high of a priority
+#     - How exploitable is the finding. Most static analysis tools will not tell you how exploitable a finding is because they do not have enough context of the repo. Can you fix this and incorporate exploitability in your analysis. Ensure you can reproduce reliable and consistent results.
+#     - How much engineering effort will it take to fix the finding. Some fixes are simple one line fixes that only take a couple of minutes. Other vulnerabilities require you to restructure your program that could be expensive. Calculate how long it will take to fix findings. You should also provide a justification which can be relayed to the end user.
+# - Once findings have been prioritised your next task is to incorporate the most important findings into the current sprint.
+#     - Analyse the engineering time taken to fix the finding and see if it fits into the sprint
+#     - Ensure that findings are allocated to the correct team and members
+
+# Remember you should build an agent for the following tasks. It should first prioritise findings then understand the sprint play to ensure associated tickets. Document your approach to solving the problem.
+# {
+# 	"Golang errors": {},
+# 	"Issues": [
+# 		{
+# 			"severity": "MEDIUM",
+# 			"confidence": "MEDIUM",
+# 			"cwe": {
+# 				"id": "88",
+# 				"url": "https://cwe.mitre.org/data/definitions/88.html"
+# 			},
+# 			"rule_id": "G107",
+# 			"details": "Potential HTTP request made with variable url",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/main.go",
+# 			"code": "11: 	url := fmt.Sprintf("http://%s/", host)
+# 12: 	res, err := http.Get(url)
+# 13: 	if err != nil {
+# ",
+# 			"line": "12",
+# 			"column": "14",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "MEDIUM",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "703",
+# 				"url": "https://cwe.mitre.org/data/definitions/703.html"
+# 			},
+# 			"rule_id": "G307",
+# 			"details": "Deferring unsafe method "Close" on type "*os.File"",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/test/main.go",
+# 			"code": "13: 
+# 14: 	defer file.Close()
+# 15: 
+# ",
+# 			"line": "14",
+# 			"column": "2",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/struct-cast/main.go",
+# 			"code": "26: 
+# 27: 	violet := *(*VioletStruct)(unsafe.Pointer(&pink))
+# 28: 
+# ",
+# 			"line": "27",
+# 			"column": "29",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/race-slice/main.go",
+# 			"code": "28: 
+# 29: 	return *(*[]byte)(unsafe.Pointer(sliceHeader))
+# 30: }
+# ",
+# 			"line": "29",
+# 			"column": "20",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/race-slice/main.go",
+# 			"code": "18: func unsafeStringToBytes(s *string) []byte {
+# 19: 	sh := (*reflect.StringHeader)(unsafe.Pointer(s))
+# 20: 	sliceHeader := &reflect.SliceHeader{
+# ",
+# 			"line": "19",
+# 			"column": "32",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/information-leak/main.go",
+# 			"code": "13: 	// read from memory behind buffer
+# 14: 	var leakingInformation = (*[8+17]byte)(unsafe.Pointer(&harmlessData[0]))
+# 15: 
+# ",
+# 			"line": "14",
+# 			"column": "41",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/opcode.go",
+# 			"code": "24: 
+# 25: 	forgets := *(*[]_ForgetOne)(unsafe.Pointer(h))
+# 26: 	for i, f := range forgets {
+# ",
+# 			"line": "25",
+# 			"column": "30",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/opcode.go",
+# 			"code": "19: 	h := &reflect.SliceHeader{
+# 20: 		Data: uintptr(unsafe.Pointer(&req.arg[0])),
+# 21: 		Len:  int(in.Count),
+# ",
+# 			"line": "20",
+# 			"column": "17",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/opcode.go",
+# 			"code": "11: 	in := (*_BatchForgetIn)(req.inData)
+# 12: 	wantBytes := uintptr(in.Count) * unsafe.Sizeof(_ForgetOne{})
+# 13: 	if uintptr(len(req.arg)) < wantBytes {
+# ",
+# 			"line": "12",
+# 			"column": "35",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/exploit.go",
+# 			"code": "28: 		inHeader:            nil,
+# 29: 		inData:              unsafe.Pointer(&_BatchForgetIn{Count: 5,}),
+# 30: 		arg:                 forgetObjectBytes,
+# ",
+# 			"line": "29",
+# 			"column": "24",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/exploit.go",
+# 			"code": "18: 	sH.Len *= 16
+# 19: 	forgetObjectBytes := *(*[]byte)(unsafe.Pointer(sH))
+# 20: 
+# ",
+# 			"line": "19",
+# 			"column": "34",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/go-fuse/exploit.go",
+# 			"code": "15: 
+# 16: 	sH := (*reflect.SliceHeader)(unsafe.Pointer(&forgetObjects))
+# 17: 	sH.Cap *= 16
+# ",
+# 			"line": "16",
+# 			"column": "31",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/escape-analysis/main.go",
+# 			"code": "19: 	}
+# 20: 	return *(*string)(unsafe.Pointer(&strHeader))
+# 21: }
+# ",
+# 			"line": "20",
+# 			"column": "20",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/escape-analysis/main.go",
+# 			"code": "14: func BytesToString(b []byte) string {
+# 15: 	bytesHeader := (*reflect.SliceHeader)(unsafe.Pointer(&b))
+# 16: 	strHeader := reflect.StringHeader{
+# ",
+# 			"line": "15",
+# 			"column": "40",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/code-injection/main.go",
+# 			"code": "21: 	sliceHeader := (*reflect.SliceHeader)(unsafe.Pointer(&confusedSlice))
+# 22: 	harmlessDataAddress := uintptr(unsafe.Pointer(&(harmlessData[0])))
+# 23: 	sliceHeader.Data = harmlessDataAddress
+# ",
+# 			"line": "22",
+# 			"column": "33",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/code-injection/main.go",
+# 			"code": "20: 	confusedSlice := make([]byte, 512)
+# 21: 	sliceHeader := (*reflect.SliceHeader)(unsafe.Pointer(&confusedSlice))
+# 22: 	harmlessDataAddress := uintptr(unsafe.Pointer(&(harmlessData[0])))
+# ",
+# 			"line": "21",
+# 			"column": "40",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		},
+# 		{
+# 			"severity": "LOW",
+# 			"confidence": "HIGH",
+# 			"cwe": {
+# 				"id": "242",
+# 				"url": "https://cwe.mitre.org/data/definitions/242.html"
+# 			},
+# 			"rule_id": "G103",
+# 			"details": "Use of unsafe calls should be audited",
+# 			"file": "/home/rahul/code/nullify/Rebel-Alliance/the-force/data/expected-comments/golang/go-unsafepointer-poc/code-flow-redirection/main.go",
+# 			"code": "53: 
+# 54: 	arrayCopy((*[64]byte)(unsafe.Pointer(&theData.harmlessData)), &theData.exploit)
+# 55: }
+# ",
+# 			"line": "54",
+# 			"column": "24",
+# 			"nosec": false,
+# 			"suppressions": null
+# 		}
+# 	],
+# 	"Stats": {
+# 		"files": 11,
+# 		"lines": 493,
+# 		"nosec": 0,
+# 		"found": 17
+# 	},
+# 	"GosecVersion": "dev"
+# }
+# Example Code Sprint
+# To-do
+# In progress
+# Complete
+# package main
+
+# import (
+# 	"fmt"
+# 	"net/http"
+# 	"os"
+# )
+
+# func main() {
+# 	host := os.Args[0]
+# 	url := fmt.Sprintf("http://%s/", host)
+# 	res, err := http.Get(url)
+# 	if err != nil {
+# 		panic(err)
+# 	}
+# 	fmt.Printf("Status: %d", res.StatusCode)
+# }
+
+
+# come up with sprint planing of your findings in this code and create tickets and assign them based on sprint and availability of team and write code fixes on ticket and write final tickets in sprints with heading and code samples and priority and assignees
+
+# #######
