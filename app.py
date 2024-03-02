@@ -457,9 +457,9 @@ come up with sprint planing of your findings in this code and create tickets and
     step1 = st.empty()
 
     if button.button("Run"):
-    	if df is not None:
+        if df is not None:
             # Convert the DataFrame to a string or a format that your model can process
-        	csv_data_as_string = df.to_csv(index=False)
+            csv_data_as_string = df.to_csv(index=False)
         else:
             csv_data_as_string = "No CSV data uploaded"
         
