@@ -465,7 +465,7 @@ come up with sprint planing of your findings in this code and create tickets and
         
         combined_input = f"{task}\n\nCSV Data:\n{csv_data_as_string}"+csv_data_as_string
         # st.markdown(combined_input, unsafe_allow_html=False)
-	task = combined_input
+        task = combined_input
 
         prompt = select_reasoning_modules(REASONING_MODULES, task)
         select_reasoning_modules = ""
