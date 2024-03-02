@@ -67,6 +67,11 @@ with tab1:
         time_taken.success(f"Time taken: {round(time.time() - start_time,4)} seconds")
 
 with tab2:
+    uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
+    df = None
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        st.dataframe(df)  # Display the uploaded CSV as a table
     
     task = st.text_area("What is your task?",value="""
 you are a security engineer that is able to prioritise the most important findings that need to be fixed. Some aspects you may want to consider
@@ -452,8 +457,14 @@ come up with sprint planing of your findings in this code and create tickets and
     step1 = st.empty()
 
     if button.button("Run"):
-
-        prompt = select_reasoning_modules(REASONING_MODULES, task)
+    	if df is not None:
+            # Convert the DataFrame to a string or a format that your model can process
+        	csv_data_as_string = df.to_csv(index=False)
+        else:
+            csv_data_as_string = "No CSV data uploaded"
+        
+        combined_input = f"{task}\n\nCSV Data:\n{csv_data_as_string}"
+        prompt = select_reasoning_modules(REASONING_MODULES, combined_input)
         select_reasoning_modules = ""
         stream_1 = client.chat.completions.create(
             model=reasoning_model,
