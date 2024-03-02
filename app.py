@@ -26,7 +26,7 @@ if API_KEY is None:
 
 client = Groq(api_key=API_KEY)
 
-st.set_page_config(page_title="Engineer Agent", page_icon="⚡️", layout="wide")
+st.set_page_config(page_title="⚡️", page_icon="⚡️", layout="wide")
 
 st.title("Engineer Agent")
 
