@@ -78,7 +78,8 @@ with tab2:
     df_type = st.radio("Select the Type", df_list, horizontal=True)
     Upload_btn = st.button("New Upload")
     Newuser_btn = st.button("New User")
-
+    # Newuser_btn = st.button("New User")
+    # Newuser_btn = st.button("New User")
     task = st.text_area("")
 
 
