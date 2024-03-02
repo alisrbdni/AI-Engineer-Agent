@@ -77,6 +77,7 @@ with tab2:
 
     df_type = st.radio("Select the Type", df_list, horizontal=True)
     Upload_btn = st.button("upload")
+    Newuser_btn = st.button("New User")
 
     task = st.text_area("What is your task?",value="""
 you are a security engineer that is able to prioritise the most important findings that need to be fixed. Some aspects you may want to consider
