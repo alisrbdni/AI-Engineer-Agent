@@ -72,7 +72,11 @@ with tab2:
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         st.dataframe(df)  # Display the uploaded CSV as a table
-    
+
+    df_list = ["M","A","D","A","U","Board","C....","GP."]
+
+    df_type = st.radio("Select the Type", model_list, horizontal=True)
+
     task = st.text_area("What is your task?",value="""
 you are a security engineer that is able to prioritise the most important findings that need to be fixed. Some aspects you may want to consider
     - If a finding is in a test file or something that looks like a test it should not be as high of a priority
