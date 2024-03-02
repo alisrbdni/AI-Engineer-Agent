@@ -75,7 +75,7 @@ with tab2:
 
     df_list = ["M","A","D","A","U","Board","C....","GP."]
 
-    df_type = st.radio("Select the Type", model_list, horizontal=True)
+    df_type = st.radio("Select the Type", df_list, horizontal=True)
 
     task = st.text_area("What is your task?",value="""
 you are a security engineer that is able to prioritise the most important findings that need to be fixed. Some aspects you may want to consider
