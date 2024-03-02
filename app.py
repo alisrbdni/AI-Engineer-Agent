@@ -28,7 +28,7 @@ client = Groq(api_key=API_KEY)
 
 st.set_page_config(page_title="⚡️", page_icon="⚡️", layout="wide")
 
-st.title("Engineer Agent")
+st.title("⚡️")
 
 tab2, tab1 = st.tabs([ "Agent","Text Generation"])
 
