@@ -466,7 +466,7 @@ come up with sprint planing of your findings in this code and create tickets and
         combined_input = f"{task}\n\nCSV Data:\n{csv_data_as_string}"+csv_data_as_string
         # st.markdown(combined_input, unsafe_allow_html=False)
         task = combined_input
-
+        st.markdown(task)
         prompt = select_reasoning_modules(REASONING_MODULES, task)
         select_reasoning_modules = ""
         stream_1 = client.chat.completions.create(
@@ -484,6 +484,8 @@ come up with sprint planing of your findings in this code and create tickets and
         
 
         prompt = adapt_reasoning_modules(select_reasoning_modules, task)
+        st.markdown(task)
+
         stream_2 = client.chat.completions.create(
             model=reasoning_model,
             messages=[{"role": "system", "content": "You are a world class expert in reasoning."},
