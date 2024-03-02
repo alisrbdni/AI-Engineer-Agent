@@ -3,7 +3,7 @@ app.py
 """
 import time
 import os
-
+import pandas as pd
 import streamlit as st
 from groq import Groq
 
