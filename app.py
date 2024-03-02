@@ -463,7 +463,8 @@ come up with sprint planing of your findings in this code and create tickets and
         else:
             csv_data_as_string = "No CSV data uploaded"
         
-        combined_input = f"{task}\n\nCSV Data:\n{csv_data_as_string}"
+        combined_input = f"{task}\n\nCSV Data:\n{csv_data_as_string}"+csv_data_as_string
+	st.text(combined_input)
         prompt = select_reasoning_modules(REASONING_MODULES, combined_input)
         select_reasoning_modules = ""
         stream_1 = client.chat.completions.create(
