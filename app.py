@@ -101,7 +101,7 @@ with tab2:
         else:
             csv_data_as_string = "No CSV data uploaded"
         
-        combined_input = f"{task}\n\nCSV Data:\n{csv_data_as_string}"+csv_data_as_string
+        combined_input = f"{task}\n\n of this CSV Data:\n{csv_data_as_string}"+csv_data_as_string
         # st.markdown(combined_input, unsafe_allow_html=False)
         task = combined_input
         st.markdown(task)
