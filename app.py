@@ -6,6 +6,7 @@ import os
 import pandas as pd
 import streamlit as st
 from groq import Groq
+from streamlit_ace import st_ace
 
 from self_discover import (
     REASONING_MODULES,
@@ -195,7 +196,6 @@ with tab2:
         )
 
         
-        from streamlit_ace import st_ace
 
         for chunk in stream_4:
             chunk_content = chunk.choices[0].delta.content
