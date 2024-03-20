@@ -36,7 +36,7 @@ tab2, tab1 = st.tabs([ "Agent","Text Generation"])
 
 streamed_text = ""
 
-
+result = ""
 
 with tab1:
     system_prompt = st.text_input("System Prompt", "You are a friendly software engineer.")
@@ -103,7 +103,7 @@ with tab1:
     components.iframe(url)
     # # Embedding the URL in an iframe
     # components.iframe(url, width=700, height=500)
-        
+     
 with tab2:
     uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
     df = None
@@ -128,7 +128,6 @@ with tab2:
     reasoning_model = st.radio("Select your LLM for this reasoning task", model_list, horizontal=True, help="mixtral is recommended for better performance, but appears to be slower")
 
 
-    result = ""
     code = st_ace(
             value=result,
             language='python', 
