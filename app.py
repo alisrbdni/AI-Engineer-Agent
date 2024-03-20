@@ -88,7 +88,7 @@ with tab1:
       <head>
         <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
         <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-           <py-env>
+      <py-env>
        - matplotlib
        - pandas
 </py-env>
