@@ -180,9 +180,7 @@ with tab2:
             if chunk_content is not None:
                 result = result + chunk_content
                 step4.info("Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
-
-    
-        code = st_ace(
+    code = st_ace(
             value=result,
             language='python', 
             theme='tomorrow_night',
