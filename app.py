@@ -51,7 +51,7 @@ with tab1:
     button = st.empty()
     time_taken = st.empty()
     response = st.empty()
-
+    streamed_text = ""
 
     if button.button("Generate"):
         stream = client.chat.completions.create(
@@ -63,7 +63,7 @@ with tab1:
 
         start_time = time.time()
 
-        streamed_text = ""
+        
 
         for chunk in stream:
             chunk_content = chunk.choices[0].delta.content
@@ -74,33 +74,33 @@ with tab1:
         
 
         time_taken.success(f"Time taken: {round(time.time() - start_time,4)} seconds")
-        code = st_ace(
-            value=streamed_text,
-            language='python', 
-            theme='tomorrow_night',
-            tab_size= 4,
-            font_size=16, height=200,
-        )
-        
-        
-        html = f"""
-        <html>
-          <head>
-            <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-            <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-          </head>
-          <body>
-            <py-script>{code}</py-script>
-          </body>
-        </html>
-        """
+    code = st_ace(
+        value=streamed_text,
+        language='python', 
+        theme='tomorrow_night',
+        tab_size= 4,
+        font_size=16, height=200,
+    )
+    
+    
+    html = f"""
+    <html>
+      <head>
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+      </head>
+      <body>
+        <py-script>{code}</py-script>
+      </body>
+    </html>
+    """
             
-        st.components.v1.html(html, height=200, scrolling=True)
-        # Example URL
-        url = st.text('https://www.example.com')
-        
-        # Embedding the URL in an iframe
-        components.iframe(url, width=700, height=500)
+    st.components.v1.html(html, height=200, scrolling=True)
+    # Example URL
+    url = st.text_input("URL", "https://memecoingen.com")
+    
+    # Embedding the URL in an iframe
+    components.iframe(url, width=700, height=500)
         
 with tab2:
     uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
