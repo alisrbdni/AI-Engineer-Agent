@@ -88,6 +88,7 @@ with tab2:
     # Newuser_btn = st.button("New User")
     # Newuser_btn = st.button("New User")
     task = st.text_area("")
+    
 
 
 
@@ -95,11 +96,6 @@ with tab2:
 
     reasoning_model = st.radio("Select your LLM for this reasoning task", model_list, horizontal=True, help="mixtral is recommended for better performance, but appears to be slower")
 
-    button = st.empty()
-    step4 = st.empty()
-    step3 = st.empty() 
-    step2 = st.empty()
-    step1 = st.empty()
 
     result = ""
     code = st_ace(
@@ -124,6 +120,13 @@ with tab2:
         """
             
     st.components.v1.html(html, height=200, scrolling=True)
+    button = st.empty()
+    step4 = st.empty()
+    step3 = st.empty() 
+    step2 = st.empty()
+    step1 = st.empty()
+
+    
     if button.button("Run"):
         
         if df is not None:
