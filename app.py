@@ -33,6 +33,10 @@ st.title("⚡️")
 
 tab2, tab1 = st.tabs([ "Agent","Text Generation"])
 
+
+
+
+
 with tab1:
     system_prompt = st.text_input("System Prompt", "You are a friendly chatbot.")
     user_prompt = st.text_input("User Prompt", "Tell me a joke.")
@@ -42,11 +46,35 @@ with tab1:
     model_list = ["mixtral-8x7b-32768","llama2-70b-4096"]
 
     model = st.radio("Select the LLM", model_list, horizontal=True)
-
+    
     button = st.empty()
     time_taken = st.empty()
     response = st.empty()
+    result = ""
 
+    st.text(result)
+    code = st_ace(
+        value=result,
+        language='python', 
+        theme='tomorrow_night',
+        tab_size= 4,
+        font_size=16, height=200
+    )
+    
+    
+    html = f"""
+    <html>
+      <head>
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+      </head>
+      <body>
+        <py-script>{code}</py-script>
+      </body>
+    </html>
+    """
+        
+    st.components.v1.html(html, height=200, scrolling=True)
     if button.button("Generate"):
         stream = client.chat.completions.create(
             model=model,
@@ -166,7 +194,7 @@ with tab2:
             stream=True
         )
 
-        result = ""
+        
         from streamlit_ace import st_ace
 
         for chunk in stream_4:
@@ -174,30 +202,7 @@ with tab2:
             if chunk_content is not None:
                 result = result + chunk_content
                 step4.info("# Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
-            else:
-                st.text(result)
-                code = st_ace(
-                    value=result,
-                    language='python', 
-                    theme='tomorrow_night',
-                    tab_size= 4,
-                    font_size=16, height=200
-                )
-                
-                
-                html = f"""
-                <html>
-                  <head>
-                    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-                    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-                  </head>
-                  <body>
-                    <py-script>{code}</py-script>
-                  </body>
-                </html>
-                """
-                    
-                st.components.v1.html(html, height=200, scrolling=True)
+
         
                     
 
