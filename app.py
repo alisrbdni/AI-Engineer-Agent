@@ -32,10 +32,7 @@ st.title("⚡️")
 
 from streamlit_ace import st_ace
     
-    "# Running `pyscript`"
-    
-    "## Input"
-    
+
 code = st_ace(
     value="""print("Hello!")""",
     language='python', 
@@ -44,8 +41,6 @@ code = st_ace(
     font_size=16, height=200
 )
 
-"*****"
-"## Output"
 
 html = f"""
 <html>
