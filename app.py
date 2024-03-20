@@ -52,7 +52,7 @@ with tab1:
     response = st.empty()
     
     result = "Print('hi')"
-
+    
     code = st_ace(
         value=result,
         language='python', 
