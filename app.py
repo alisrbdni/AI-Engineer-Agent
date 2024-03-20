@@ -103,7 +103,8 @@ with tab2:
             language='python', 
             theme='tomorrow_night',
             tab_size= 4,
-            font_size=16, height=200
+            font_size=16, height=200,
+        packages=["matplotlib", "pandas"]
         )
         
         
