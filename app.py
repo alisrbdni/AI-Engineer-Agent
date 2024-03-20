@@ -30,31 +30,6 @@ st.set_page_config(page_title="⚡️", page_icon="⚡️", layout="wide")
 
 st.title("⚡️")
 
-from streamlit_ace import st_ace
-    
-
-code = st_ace(
-    value="""print("Hello!")""",
-    language='python', 
-    theme='tomorrow_night',
-    tab_size= 4,
-    font_size=16, height=200
-)
-
-
-html = f"""
-<html>
-  <head>
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-  </head>
-  <body>
-    <py-script>{code}</py-script>
-  </body>
-</html>
-"""
-    
-st.components.v1.html(html, height=200, scrolling=True)
 
 tab2, tab1 = st.tabs([ "Agent","Text Generation"])
 
@@ -122,6 +97,7 @@ with tab2:
 
 
     if button.button("Run"):
+        
         if df is not None:
             # Convert the DataFrame to a string or a format that your model can process
             csv_data_as_string = df.to_csv(index=False)
@@ -132,7 +108,9 @@ with tab2:
         # st.markdown(combined_input, unsafe_allow_html=False)
         task = combined_input
         st.markdown(task)
+        
         prompt = select_reasoning_modules(REASONING_MODULES, task)
+        
         select_reasoning_modules = ""
         stream_1 = client.chat.completions.create(
             model=reasoning_model,
@@ -194,6 +172,32 @@ with tab2:
             if chunk_content is not None:
                 result = result + chunk_content
                 step4.info("# Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
+        
+        from streamlit_ace import st_ace
+            
+        
+        code = st_ace(
+            value=result,
+            language='python', 
+            theme='tomorrow_night',
+            tab_size= 4,
+            font_size=16, height=200
+        )
+        
+        
+        html = f"""
+        <html>
+          <head>
+            <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+            <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+          </head>
+          <body>
+            <py-script>{code}</py-script>
+          </body>
+        </html>
+        """
+            
+        st.components.v1.html(html, height=200, scrolling=True)
 
 
 # ##################
