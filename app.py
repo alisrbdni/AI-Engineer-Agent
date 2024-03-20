@@ -129,6 +129,7 @@ with tab2:
 
 
     code = st_ace(
+            key="2",
             value=result,
             language='python', 
             theme='tomorrow_night',
