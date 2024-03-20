@@ -100,9 +100,9 @@ with tab1:
     import streamlit.components.v1 as components
 
     # embed streamlit docs in a streamlit app
-    components.iframe(url)
+    # components.iframe(url)
     # # Embedding the URL in an iframe
-    # components.iframe(url, width=700, height=1000,scroll=True)
+    components.iframe(url, width=700, height=1000,scrolling=True)
      
 with tab2:
     uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
