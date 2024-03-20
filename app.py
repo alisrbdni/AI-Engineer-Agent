@@ -101,7 +101,6 @@ with tab1:
 #     """
     html = f""" 
     
-    <!DOCTYPE html>
 <html lang="en">
 
 	<head>
@@ -139,7 +138,7 @@ with tab1:
     # embed streamlit docs in a streamlit app
     # components.iframe(url)
     # # Embedding the URL in an iframe
-    components.iframe(url, width=700, height=1000,scrolling=True)
+    components.iframe(url, width=1000, height=1000,scrolling=True)
      
 with tab2:
     uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
@@ -182,6 +181,7 @@ with tab2:
             <script defer src="https://pyscript.net/latest/pyscript.js"></script>
           </head>
           <body>
+	  
             <py-script>{code}</py-script>
           </body>
         </html>
