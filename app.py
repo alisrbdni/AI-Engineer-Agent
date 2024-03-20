@@ -167,37 +167,38 @@ with tab2:
         )
 
         result = ""
+        from streamlit_ace import st_ace
+
         for chunk in stream_4:
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 result = result + chunk_content
                 step4.info("# Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
         
-                from streamlit_ace import st_ace
                     
-                
-                code = st_ace(
-                    value=result,
-                    language='python', 
-                    theme='tomorrow_night',
-                    tab_size= 4,
-                    font_size=16, height=200
-                )
-                
-                
-                html = f"""
-                <html>
-                  <head>
-                    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-                    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-                  </head>
-                  <body>
-                    <py-script>{code}</py-script>
-                  </body>
-                </html>
-                """
-                    
-                st.components.v1.html(html, height=200, scrolling=True)
+        st.text(result)
+        code = st_ace(
+            value=result,
+            language='python', 
+            theme='tomorrow_night',
+            tab_size= 4,
+            font_size=16, height=200
+        )
+        
+        
+        html = f"""
+        <html>
+          <head>
+            <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+            <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+          </head>
+          <body>
+            <py-script>{code}</py-script>
+          </body>
+        </html>
+        """
+            
+        st.components.v1.html(html, height=200, scrolling=True)
 
 
 # ##################
