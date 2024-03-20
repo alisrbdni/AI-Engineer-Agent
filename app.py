@@ -189,7 +189,7 @@ with tab2:
         )
         
         
-        html = f"""
+    html = f"""
         <html>
           <head>
             <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
@@ -201,7 +201,7 @@ with tab2:
         </html>
         """
             
-        st.components.v1.html(html, height=200, scrolling=True)
+    st.components.v1.html(html, height=200, scrolling=True)
                     
 
 
