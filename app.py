@@ -100,7 +100,7 @@ with tab1:
     
     st.components.v1.html(html, height=200, scrolling=True)
     # Example URL
-    url = st.text_input("URL", "https://memecoingen.com")
+    url = st.text_input("URL", "https://ai-engineer-agent.streamlit.app/")
     import streamlit.components.v1 as components
 
     # embed streamlit docs in a streamlit app
