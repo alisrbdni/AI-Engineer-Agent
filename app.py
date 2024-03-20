@@ -82,6 +82,7 @@ with tab1:
     )
     
     
+    
     html = f"""
     <html>
       <head>
@@ -89,11 +90,15 @@ with tab1:
         <script defer src="https://pyscript.net/latest/pyscript.js"></script>
       </head>
       <body>
+      <py-env>
+       - matplotlib
+       - pandas
+</py-env>
         <py-script>{code}</py-script>
       </body>
     </html>
     """
-            
+    
     st.components.v1.html(html, height=200, scrolling=True)
     # Example URL
     url = st.text_input("URL", "https://memecoingen.com")
