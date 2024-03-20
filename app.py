@@ -129,7 +129,7 @@ with tab2:
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 select_reasoning_modules = select_reasoning_modules + chunk_content
-                step1.info("# Step 1: SELECT relevant reasoning modules for the task \n \n"+select_reasoning_modules)
+                step1.info("Step 1: SELECT relevant reasoning modules for the task \n \n"+select_reasoning_modules)
         
 
         prompt = adapt_reasoning_modules(select_reasoning_modules, task)
@@ -147,7 +147,7 @@ with tab2:
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 adapted_modules = adapted_modules + chunk_content
-                step2.info("# Step 2: ADAPT the selected reasoning modules to be more specific to the task. \n \n " + adapted_modules)
+                step2.info("Step 2: ADAPT the selected reasoning modules to be more specific to the task. \n \n " + adapted_modules)
 
         prompt = implement_reasoning_structure(adapted_modules, task)
         stream_3 = client.chat.completions.create(
@@ -162,7 +162,7 @@ with tab2:
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 reasoning_structure = reasoning_structure + chunk_content
-                step3.info("# Step 3: IMPLEMENT the adapted reasoning modules into an actionable reasoning structure. \n \n " + reasoning_structure)
+                step3.info("Step 3: IMPLEMENT the adapted reasoning modules into an actionable reasoning structure. \n \n " + reasoning_structure)
 
         prompt = execute_reasoning_structure(reasoning_structure, task)
         stream_4 = client.chat.completions.create(
