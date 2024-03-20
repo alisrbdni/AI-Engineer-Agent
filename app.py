@@ -101,7 +101,7 @@ with tab2:
     step2 = st.empty()
     step1 = st.empty()
 
-
+    result = ""
     if button.button("Run"):
         
         if df is not None:
@@ -173,7 +173,7 @@ with tab2:
         )
 
         
-        result = ""
+
 
         for chunk in stream_4:
             chunk_content = chunk.choices[0].delta.content
