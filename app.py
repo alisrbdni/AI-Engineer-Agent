@@ -50,9 +50,9 @@ with tab1:
     button = st.empty()
     time_taken = st.empty()
     response = st.empty()
-    result = ""
+    
+    result = "Print('hi')"
 
-    st.text(result)
     code = st_ace(
         value=result,
         language='python', 
