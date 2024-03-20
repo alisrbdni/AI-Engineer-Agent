@@ -39,8 +39,8 @@ tab2, tab1 = st.tabs([ "Agent","Text Generation"])
 
 
 with tab1:
-    system_prompt = st.text_input("System Prompt", "You are a friendly chatbot.")
-    user_prompt = st.text_input("User Prompt", "Tell me a joke.")
+    system_prompt = st.text_input("System Prompt", "You are a friendly software engineer.")
+    user_prompt = st.text_input("User Prompt", "Create a pandas table of Newyork weather forecasts in 2024.")
 
     # model_list = client.models.list().data
     # model_list = [model.id for model in model_list]
@@ -51,6 +51,7 @@ with tab1:
     button = st.empty()
     time_taken = st.empty()
     response = st.empty()
+    
     
 
     if button.button("Generate"):
@@ -70,9 +71,32 @@ with tab1:
             if chunk_content is not None:
                 streamed_text = streamed_text + chunk_content
                 response.info(streamed_text)
+        
 
         time_taken.success(f"Time taken: {round(time.time() - start_time,4)} seconds")
-
+        result = streamed_text
+        code = st_ace(
+                value=result,
+                language='python', 
+                theme='tomorrow_night',
+                tab_size= 4,
+                font_size=16, height=200,
+            )
+            
+            
+        html = f"""
+            <html>
+              <head>
+                <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+                <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+              </head>
+              <body>
+                <py-script>{code}</py-script>
+              </body>
+            </html>
+            """
+                
+        st.components.v1.html(html, height=200, scrolling=True)
 with tab2:
     uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
     df = None
