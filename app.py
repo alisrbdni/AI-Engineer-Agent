@@ -83,21 +83,52 @@ with tab1:
     
     
     
-    html = f"""
-    <html>
-      <head>
-        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-      <py-env>
-       - matplotlib
-       - pandas
-</py-env>
-      </head>
-      <body>
+#     html = f"""
+#     <html>
+#       <head>
+#         <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+#         <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+#       <py-env>
+#        - matplotlib
+#        - pandas
+# </py-env>
+#       </head>
+#       <body>
    
-        <py-script>{code}</py-script>
-      </body>
-    </html>
+#         <py-script>{code}</py-script>
+#       </body>
+#     </html>
+#     """
+    html = f""" 
+    
+    <!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Pyscript Test</title>
+		<link rel="stylesheet" href="nerdle-styles.css">
+		<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+		<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+	</head>
+
+	<body>
+		<div class="headingcontainer">
+			<h1>Hallo Welt</h1>
+			<h3>mit pyscript</h3>
+		</div>
+		<py-env>
+			- pandas
+		</py-env>
+		<py-script>
+			from pandas import Series,DataFrame
+			print("Hallo Welt.")
+		</py-script>
+	</body>
+
+</html>
+    
+    
     """
     
     st.components.v1.html(html, height=200, scrolling=True)
