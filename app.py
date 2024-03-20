@@ -52,7 +52,6 @@ with tab1:
     time_taken = st.empty()
     response = st.empty()
     result = ""
-    result = streamed_text
     code = st_ace(
         value=result,
         language='python', 
