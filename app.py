@@ -95,36 +95,36 @@ with tab2:
     step1 = st.empty()
 
 
-from streamlit_ace import st_ace
-
-"# Running `pyscript`"
-
-"## Input"
-
-code = st_ace(
-    value="""print("Hello!")""",
-    language='python', 
-    theme='tomorrow_night',
-    tab_size= 4,
-    font_size=16, height=200
-)
-
-"*****"
-"## Output"
-
-html = f"""
-<html>
-  <head>
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-  </head>
-  <body>
-    <py-script>{code}</py-script>
-  </body>
-</html>
-"""
-
-st.components.v1.html(html, height=200, scrolling=True)
+    from streamlit_ace import st_ace
+    
+    "# Running `pyscript`"
+    
+    "## Input"
+    
+    code = st_ace(
+        value="""print("Hello!")""",
+        language='python', 
+        theme='tomorrow_night',
+        tab_size= 4,
+        font_size=16, height=200
+    )
+    
+    "*****"
+    "## Output"
+    
+    html = f"""
+    <html>
+      <head>
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+      </head>
+      <body>
+        <py-script>{code}</py-script>
+      </body>
+    </html>
+    """
+    
+    st.components.v1.html(html, height=200, scrolling=True)
 
     if button.button("Run"):
         if df is not None:
