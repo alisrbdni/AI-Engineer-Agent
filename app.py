@@ -98,9 +98,12 @@ with tab1:
     st.components.v1.html(html, height=200, scrolling=True)
     # Example URL
     url = st.text_input("URL", "https://memecoingen.com")
-    
-    # Embedding the URL in an iframe
-    components.iframe(url, width=700, height=500)
+    import streamlit.components.v1 as components
+
+    # embed streamlit docs in a streamlit app
+    components.iframe(url)
+    # # Embedding the URL in an iframe
+    # components.iframe(url, width=700, height=500)
         
 with tab2:
     uploaded_file = st.file_uploader("Upload CSV", type=['csv'])
