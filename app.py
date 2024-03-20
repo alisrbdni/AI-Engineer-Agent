@@ -34,7 +34,7 @@ st.title("⚡️")
 
 tab2, tab1 = st.tabs([ "Agent","Text Generation"])
 
-
+streamed_text = ""
 
 
 
@@ -51,7 +51,6 @@ with tab1:
     button = st.empty()
     time_taken = st.empty()
     response = st.empty()
-    streamed_text = ""
 
     if button.button("Generate"):
         stream = client.chat.completions.create(
