@@ -179,7 +179,7 @@ with tab2:
             chunk_content = chunk.choices[0].delta.content
             if chunk_content is not None:
                 result = result + chunk_content
-                step4.info("# Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
+                step4.info("Step 4: Execute the reasoning structure to solve a specific task instance. \n \n " + result)
 
     
         code = st_ace(
